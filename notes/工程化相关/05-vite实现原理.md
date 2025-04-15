@@ -13,3 +13,6 @@
 #### 6. 在生产环境用 rollup 来打包，因为 vite 插件兼容了 rollup 插件，所以也是用同样的插件来处理，这样能保证开发和生产环境代码一致。
 
 #### 7. 此外，vite 还基于 chokidar 和 websocket 来实现了模块热更新。
+
+
+### 参考：[Vite 的实现原理，确实很巧妙](https://mp.weixin.qq.com/s/lwjCQ5VsRCcFimLMNn3evA)
