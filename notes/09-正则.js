@@ -21,3 +21,7 @@ const hlsUrl = url.replace(
   "https://xxxx.vicp.fun/video-play/"
 );
 // console.log(hlsUrl);
+
+// 5、校验版本号
+const versionReg = /^\d+(?:\.\d+){2}$/;
+console.log(versionReg.test("10.40.5"));
