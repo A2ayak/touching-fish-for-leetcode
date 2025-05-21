@@ -140,5 +140,26 @@
 9. 解决 require 导入问题（改 import 或使用 vite-plugin-require-transform）
 10. 使用 wujie 加载导致样式丢失问题（跟高版本 Vite 相关），[Github issue 解决](https://github.com/Tencent/wujie/issues/434)
 11. 使用 vite 打包导致 ElementUI 的 table 组件显示空白，[Github issue 解决](https://github.com/ElemeFE/element/issues/21968)
+12. vite@4和vite@5在wujie作为子应用时对 newURL(`../assets/${path}`, import.meta.url).href 的处理不一样，后者不需要作兼容处理，前者需要，举例如下：
+
+    ```
+    export function getImgUrl(path) {
+      // if (window?.__POWERED_BY_WUJIE__ && import.meta.env.DEV) {
+      //   const basePath = window?.__WUJIE_PUBLIC_PATH__ || "/";
+      //   return `${basePath}iot-admin-web/src/assets/${path}`;
+      // }
+      return new URL(`../assets/${path}`, import.meta.url).href;
+    }
+    ```
+13. vite 对scss进行import会报错，需要添加?inline
+
+    ```
+    如：import variables from "@/styles/variables.scss?inline";
+    这个错误发生的原因是：
+
+    1. Vite默认会将.scss文件视为CSS模块处理，而不是像Vue CLI那样处理 :export 指令
+    2. 添加 ?inline 查询参数可以让Vite以内联方式处理该文件，保留 :export 指令的功能
+    ```
+14. 
 
 其他参考链接：[vue2 迁移到vite](https://juejin.cn/post/7265524106816700479#heading-1)、[从 Vue-cli 迁移到 vite 的记录](https://carljin.com/posts/migrating-from-webpack-vue-cli-to-vitejs/)
