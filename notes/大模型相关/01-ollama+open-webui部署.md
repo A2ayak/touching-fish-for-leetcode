@@ -9,7 +9,12 @@ pnpm i
 
 # 配置python环境
 pip install uv
-uv sync 
+# 或 curl -LsSf https://astral.sh/uv/install.sh | sh
+# source ~/.bashrc
+# 初始化，构建虚拟环境并根据pyproject.toml下载依赖
+uv sync
+# 或uv venv构建虚拟环境
+# 或uv pip install -r requirements.txt -U 从
 # 进入虚拟环境
 source .venv/bin/activate
 # （退出使用deactivete）
